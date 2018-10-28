@@ -7,7 +7,20 @@
   <title>Chat-App</title>
 </head>
 <body>
-  <p>Welcome to my app.</p>
+  <p>Welcome to my chat app.</p>
   <p>By- Er. Himanshu sharma </p>
+
+  <script src='/socket.io/socket.io.js'></script>
+  <script>
+    var socket = io();
+
+    socket.on('connect',()=>{
+      console.log('Connected to server');
+    });
+
+    socket.on('disconnect',()=>{
+      console.log('Server disconnected');
+    });
+  </script>
 </body>
 </html>
