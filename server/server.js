@@ -16,10 +16,11 @@ io.on('connection',(socket)=>{
   socket.emit('newMessage',generateMessage('Admin',"welcome to my chat app"));
   //broadcast inform all the other user except who join.
   socket.broadcast.emit('newMessage',generateMessage("Admin","New user joined"));
-  socket.on('createMessage',(message)=>{
+  socket.on('createMessage',(message,callback)=>{
     console.log("createMessage",message);
 
     io.emit('newMessage',generateMessage(message.from,message.text));
+    callback('This is from server');
   })
 
   socket.on('disconnect',()=>{
