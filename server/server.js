@@ -13,7 +13,18 @@ app.use(express.static(publicPath));
 
 io.on('connection',(socket)=>{
   console.log('New user connected');
+  socket.emit('newMessage',{
+    from:"Admin",
+    text:"Welcome to chat app.",
+    createdAt:new Date().getTime()
 
+  });
+  //broadcast inform all the other user except who join.
+  socket.broadcast.emit('newMessage',{
+    from:'Admin',
+    text:'A new user join the chat room.',
+    createdAt:new Date().getTime()
+  })
   socket.on('createMessage',(message)=>{
     console.log("createMessage",message);
 
